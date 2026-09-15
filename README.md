@@ -8,7 +8,7 @@
 
 > Turn a fleeting reflection into a philosophical monograph — with thought tracing, a way out, and a personal action pledge.
 
-An [WorkBuddy](https://www.workbuddy.cn) Agent Skill. When you jot down a stray thought about life, work, or meaning, this skill doesn't rush to typesetting. It first sits you down for a conversation with the greatest minds who wrestled with the same questions — and only after the discussion settles does it produce a single-file HTML monograph.
+A **cross-platform Agent Skill** — a pure `SKILL.md` workflow that runs on WorkBuddy, Claude Code, or any AI agent that can load skill / prompt files. When you jot down a stray thought about life, work, or meaning, this skill doesn't rush to typesetting. It first sits you down for a conversation with the greatest minds who wrestled with the same questions — and only after the discussion settles does it produce a single-file HTML monograph.
 
 📖 **[See the full example *Seeing What Matters*](./example/monograph.html)** (a monograph on overcoming snap judgments by appearance — open in browser)
 
@@ -63,7 +63,7 @@ Typical triggers: *"make me a knowledge card for this"* / *"organize this reflec
 
 ## 📦 Installation
 
-Clone into a WorkBuddy skills directory:
+**WorkBuddy** — clone into a skills directory:
 
 ```bash
 # User-level (available in all projects)
@@ -73,7 +73,13 @@ git clone https://github.com/Dassin/great-you.git ~/.workbuddy/skills/great-you
 git clone https://github.com/Dassin/great-you.git .workbuddy/skills/great-you
 ```
 
-Restart your WorkBuddy session and it's live.
+**Claude Code** — drop it into your skills folder:
+
+```bash
+git clone https://github.com/Dassin/great-you.git ~/.claude/skills/great-you
+```
+
+**Any other agent** — the whole skill is one `SKILL.md` plus one HTML template: paste the workflow into your agent's system prompt / custom instructions / project rules (ChatGPT Projects, Claude Projects, etc.) and it just works. Restart your agent session and it's live.
 
 ## 🎨 Visual System (Series Consistency)
 
@@ -108,4 +114,4 @@ great-you/
 
 ## License
 
-MIT © 2026 Dassin
+MIT © 2026 FengSun
