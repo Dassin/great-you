@@ -8,7 +8,7 @@
 
 > 把一句随口的感悟，走完「讨论 → 札记 → 溯源 → 破局 → 契约 → 排版」，沉淀成一份带思想溯源与行动契约的单文件 HTML 专题册。
 
-一个 [WorkBuddy](https://www.workbuddy.cn) Agent Skill。当你随手记下一句人生感悟、职场困惑或哲思短句，它不会直接给你排版了事——而是先请你坐下，与两千五百年来最会想这些问题的头脑对话，讨论成熟后再落笔成册。
+一个**跨平台 Agent Skill**——纯 `SKILL.md` 工作流，可运行于 WorkBuddy、Claude Code，或任何能加载技能/提示词文件的 AI agent。当你随手记下一句人生感悟、职场困惑或哲思短句，它不会直接给你排版了事——而是先请你坐下，与两千五百年来最会想这些问题的头脑对话，讨论成熟后再落笔成册。
 
 📖 **[查看完整示例《视其所视》](./example/monograph.html)**（克服以貌取人专题册，浏览器直接打开）
 
@@ -63,7 +63,7 @@ AI：  （第5步）排版完成 → /workspace/monograph.html ✅
 
 ## 📦 安装
 
-将本仓库克隆到 WorkBuddy 的技能目录：
+**WorkBuddy** —— 克隆到技能目录：
 
 ```bash
 # 用户级（所有项目可用）
@@ -73,7 +73,13 @@ git clone https://github.com/Dassin/great-you.git ~/.workbuddy/skills/great-you
 git clone https://github.com/Dassin/great-you.git .workbuddy/skills/great-you
 ```
 
-重启 WorkBuddy 会话后即可触发。
+**Claude Code** —— 放进技能文件夹：
+
+```bash
+git clone https://github.com/Dassin/great-you.git ~/.claude/skills/great-you
+```
+
+**其他 Agent** —— 整个 skill 就是一个 `SKILL.md` 加一个 HTML 模板：把工作流粘进你的 agent 系统提示词 / 自定义指令 / 项目规则（ChatGPT Projects、Claude Projects 等）即可生效。重启 agent 会话后即可触发。
 
 ## 🎨 视觉规范（系列一致性）
 
@@ -108,4 +114,4 @@ great-you/
 
 ## License
 
-MIT © 2026 Dassin
+MIT © 2026 FengSun
