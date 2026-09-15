@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>视其所视 · 克服以貌取人专题册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: linear-gradient(160deg, #0f1419, #1a1625, #14110d);
+    background-attachment: fixed;
+    color: #f0e8d6;
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(ellipse 600px 400px at 15% 8%, rgba(201,169,97,.14), transparent 65%),
+      radial-gradient(ellipse 700px 500px at 88% 30%, rgba(155,63,90,.12), transparent 65%),
+      radial-gradient(ellipse 500px 420px at 50% 95%, rgba(201,169,97,.08), transparent 60%);
+  }
+
+  nav.toc {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px;
+    padding: 14px 20px;
+    background: rgba(15,20,25,.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,169,97,.28);
+  }
+  nav.toc a {
+    color: #c9a961; text-decoration: none; font-size: 14px; letter-spacing: .12em;
+    transition: color .2s;
+  }
+  nav.toc a:hover { color: #f0e8d6; }
+  nav.toc a .num { font-family: 'Cormorant Garamond', serif; font-style: italic; margin-right: 4px; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 56px 24px 120px; }
+  header.mono-head { text-align: center; margin-bottom: 72px; }
+  header.mono-head .eyebrow {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: #c9a961; letter-spacing: .35em; font-size: 15px; text-transform: uppercase;
+  }
+  header.mono-head h1 {
+    color: #f0e8d6; font-size: 46px; font-weight: 900; letter-spacing: .14em; margin: 14px 0 10px;
+  }
+  header.mono-head .sub { color: #b9ae95; font-size: 15px; letter-spacing: .1em; }
+
+  section { margin-bottom: 88px; scroll-margin-top: 84px; }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 30px; }
+  .sec-head .roman {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
+    font-size: 52px; color: #c9a961; line-height: 1;
+  }
+  .sec-head h2 { color: #f0e8d6; font-size: 26px; font-weight: 700; letter-spacing: .1em; }
+  .sec-head .en {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: #8d8570; font-size: 15px; letter-spacing: .18em;
+  }
+  .sec-divider { height: 1px; border: 0; margin: 0 0 34px;
+    background: linear-gradient(90deg, #c9a961, rgba(201,169,97,0) 80%); }
+
+  .card {
+    background: linear-gradient(180deg, #f7f2e8, #efe8d6);
+    border-radius: 12px;
+    box-shadow: 0 18px 44px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.35);
+    padding: 34px 38px; margin-bottom: 26px;
+    position: relative; overflow: hidden;
+    color: #2a2620;
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35;
+    background-image: repeating-linear-gradient(0deg, rgba(120,100,60,.045) 0 1px, transparent 1px 3px);
+  }
+  .card h3 { color: #2a2620; font-size: 19px; font-weight: 700; letter-spacing: .06em; margin-bottom: 12px; }
+  .card p  { color: #3a352c; font-size: 15.5px; }
+
+  .note .no { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #b8683a; font-size: 22px; }
+  .note .punch {
+    margin-top: 26px; text-align: center; color: #c9a961;
+    font-size: 18px; letter-spacing: .12em; font-weight: 600;
+  }
+
+  blockquote.quote {
+    border-left: 3px solid #c9a961;
+    padding: 6px 0 6px 18px; margin: 16px 0;
+  }
+  blockquote.quote p { font-family: 'Noto Serif SC', serif; color: #2a2620; font-size: 16px; }
+  blockquote.quote cite { display: block; margin-top: 6px; font-style: normal; color: #5a5247; font-size: 12.5px; letter-spacing: .06em; }
+
+  .person { display: grid; grid-template-columns: 100px 1fr; gap: 18px; align-items: start; }
+  .person .meta { text-align: left; }
+  .person .meta .field {
+    display: inline-block; font-size: 11px; color: #b8683a;
+    border: 1px solid rgba(184,104,58,.5); border-radius: 3px;
+    padding: 1px 7px; letter-spacing: .08em; margin-bottom: 4px;
+  }
+  .person .meta .name {
+    color: #2a2620; font-weight: 700; font-size: 17px;
+    word-break: keep-all; line-height: 1.35;
+  }
+  .person .meta .life { color: #5a5247; font-size: 11.5px; line-height: 1.6; margin-top: 3px; }
+  .person .body p { color: #3a352c; }
+
+  .diagnosis { border-left: 3px solid #b8683a; }
+  .diagnosis h3 { color: #b8683a; }
+  .move .tag { color: #c9a961; font-weight: 700; letter-spacing: .1em; }
+  .move .trap { color: #b8683a; }
+  .move .trap::before { content: "⚠ 陷阱："; font-weight: 700; }
+  .calibrator { text-align: center; padding: 26px 30px; }
+  .calibrator p { color: #2a2620; font-size: 17px; }
+
+  .pledge .pledge-info h3 { color: #2a2620; }
+  .pledge .check { display: flex; gap: 8px; align-items: flex-start; margin-top: 14px; }
+  .pledge .check input[type="checkbox"] { width: 16px; height: 16px; accent-color: #b8683a; margin-top: 5px; }
+  .pledge .check label { color: #3a352c; font-size: 14.5px; }
+
+  footer.sign { text-align: center; margin-top: 90px; position: relative; }
+  footer.sign .date { color: #b9ae95; font-size: 14px; letter-spacing: .2em; }
+  footer.sign .seal {
+    width: 64px; height: 64px; margin: 18px auto 0; border-radius: 50%;
+    border: 2px solid #b8683a; color: #b8683a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 900;
+    transform: rotate(-8deg);
+    box-shadow: inset 0 0 0 3px rgba(184,104,58,.18);
+  }
+  footer.sign .source-note { margin-top: 34px; color: #6d6552; font-size: 12px; letter-spacing: .05em; }
+
+  .group-label {
+    color: #c9a961; font-size: 14px; letter-spacing: .3em; margin: 34px 0 14px; font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<nav class="toc">
+  <a href="#roundtable"><span class="num">〇</span>圆桌</a>
+  <a href="#notes"><span class="num">i</span>札记</a>
+  <a href="#echo"><span class="num">ii</span>溯源</a>
+  <a href="#way"><span class="num">iii</span>破局</a>
+  <a href="#pledge"><span class="num">iv</span>契约</a>
+  <a href="#figures"><span class="num">v</span>人物与著作</a>
+</nav>
+
+<main>
+  <header class="mono-head">
+    <div class="eyebrow">Great You · Monograph</div>
+    <h1>视其所视</h1>
+    <div class="sub">克服以貌取人 · 一场对自己眼睛的驯养</div>
+  </header>
+
+  <!-- ============ 〇 圆桌 ============ -->
+  <section id="roundtable">
+    <div class="sec-head"><span class="roman">〇</span><h2>圆桌</h2><span class="en">The Roundtable</span></div>
+    <hr class="sec-divider">
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">东方儒学</span><div class="name">孔子</div><div class="life">中国 · 先秦 · 前551–前479</div></div>
+        <div class="body"><p>《史记》记我自省："吾以言取人，失之宰予；以貌取人，失之子羽。"连我都栽在这上面——可见这不是道德污点，是写在人性里的惯性。戒不掉"看"，要戒的是"看完就下结论"。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">先秦道家</span><div class="name">庄子</div><div class="life">中国 · 先秦 · 约前369–前286</div></div>
+        <div class="body"><p>《德充符》里，丑陋的哀骀它让人宁弃高位相随——"非爱其形也，爱使其形者也"。别问"他长什么样"，问"是什么在使这个形运转"。问法一换，眼睛只是入口，不再是法庭。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">德国古典哲学</span><div class="name">康德</div><div class="life">德国 · 德国古典哲学 · 1724–1804</div></div>
+        <div class="body"><p>第一印象无法关闭——神态是不由自主地与内心相伴的。理性做不到不看，只能把抢先的印象降格为"待修正的假设"。克服以貌取人，不是失明，是慢半拍。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">荒诞哲学</span><div class="name">加缪</div><div class="life">法国 · 荒诞哲学 · 1913–1960</div></div>
+        <div class="body"><p>《局外人》里，默尔索被判死刑，真正的罪名不是杀人，是"在母亲葬礼上没有哭"。以貌取人的极端形态不是偏见，是一场谋杀——每一次凭脸下结论，都在给别人的生死投票。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">20世纪文学</span><div class="name">圣埃克苏佩里</div><div class="life">法国 · 20世纪文学 · 1900–1944</div></div>
+        <div class="body"><p>狐狸说："只有用心才能看见。本质的东西用眼是看不见的。"但狐狸没让你闭眼——它说的是驯养：给那张脸一次被时间看见的机会，并对被驯养的人负责。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">行为经济学</span><div class="name">卡尼曼</div><div class="life">以色列/美国 · 行为经济学 · 1934–2024</div></div>
+        <div class="body"><p>第一印象是系统1的产物：快、自动、不费力，系统2的慢速修正总是缺席。短视频的滑动机制是它的健身房——每天几百次"三秒审判"，把出厂设置练成了暴政。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">教育心理学</span><div class="name">桑代克</div><div class="life">美国 · 教育心理学 · 1874–1949</div></div>
+        <div class="body"><p>我1920年命名了光环效应：一个显著特征会晕染你对其他一切品质的判断。后来的"美即好"实验把它凝成口号，劳动经济学甚至算出了"美貌溢价"——这一眼，是有价格标签的认知偏差。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">情境主义</span><div class="name">德波</div><div class="life">法国 · 情境主义 · 1931–1994</div></div>
+        <div class="body"><p>景观不是影像的聚合，而是以影像为中介的人们之间的社会关系。短视频是景观社会的完成态——你在刷它，它也在给你定价。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">后现代</span><div class="name">鲍德里亚</div><div class="life">法国 · 后现代 · 1929–2007</div></div>
+        <div class="body"><p>身体是消费全套装备里"最美丽、最珍贵、最光彩夺目的物品"。脸被定价、被滤镜、被经营——颜值就是流通货币。你面对的不是几个以貌取人的人，是一整套把脸当钱的经济系统。</p></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">社会学</span><div class="name">戈夫曼</div><div class="life">加拿大/美国 · 社会学 · 1922–1982</div></div>
+        <div class="body"><p>人人都在做前台管理——你在刷别人的"貌"时，别人也在人设里演给你看。这是双向审判：你不只以貌取人，你也在被取。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ i 札记 ============ -->
+  <section id="notes">
+    <div class="sec-head"><span class="roman">i</span><h2>札记</h2><span class="en">Life Notes</span></div>
+    <hr class="sec-divider">
+
+    <div class="card note">
+      <span class="no">i.</span>
+      <h3>眼睛的旧习惯</h3>
+      <p>以貌取人不是修养问题，是人脑的出厂设置——圣人也难逃：孔子失之子羽，康德承认印象在结论之前抢先抵达。要戒的从来不是"看"，是"看完就定罪"。</p>
+    </div>
+    <div class="card note">
+      <span class="no">ii.</span>
+      <h3>算法的新放大器</h3>
+      <p>三秒滑动把旧习惯训练成暴政，脸成了流通货币——你在刷别人的貌，也在被别人的滑动定价。每个发照片的人，既是法官，也是被告。</p>
+    </div>
+    <div class="card note">
+      <span class="no">iii.</span>
+      <h3>视其所视</h3>
+      <p>克服不是失明，是换一个看的地方——看驱动形的那个"使形者"，只收集行为不收集长相，用时间的驯养替换三秒的审判。</p>
+    </div>
+    <p class="punch">眼睛负责看见；判决，须另行签字。</p>
+  </section>
+
+  <!-- ============ ii 溯源 ============ -->
+  <section id="echo">
+    <div class="sec-head"><span class="roman">ii</span><h2>溯源</h2><span class="en">Philosophical Echo</span></div>
+    <hr class="sec-divider">
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">东方儒学</span><div class="name">孔子</div><div class="life">中国 · 先秦 · 前551–前479</div></div>
+        <div class="body">
+          <blockquote class="quote">
+            <p>（澹台灭明）状貌甚恶。欲事孔子，孔子以为材薄。……孔子闻之，曰："吾以言取人，失之宰予；以貌取人，失之子羽。"</p>
+            <cite>—— 司马迁《史记 · 仲尼弟子列传》</cite>
+          </blockquote>
+          <p>札记i说的"旧习惯"，两千五百年前就被圣人亲口记录在案——它不因修养而免除，只可能被后觉的教训修正。这正是"克服"一词的起点：承认它，才谈得上改。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">德国古典哲学</span><div class="name">康德</div><div class="life">德国 · 德国古典哲学 · 1724–1804</div></div>
+        <div class="body">
+          <blockquote class="quote">
+            <p>一块表有好看的外壳，人们虽然并不能有把握说它内部也是优秀的，但如果外壳也很差，那人们就能推断它内部也不怎么样。</p>
+            <cite>—— 康德《实用人类学》（邓晓芒译）</cite>
+          </blockquote>
+          <p>康德给"貌"留了一点点正当性——外壳太差时确实可疑；但判断权必须收归理性：第一印象只能当待修正的假设，不能当判决书。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">行为经济学</span><div class="name">卡尼曼</div><div class="life">以色列/美国 · 行为经济学 · 1934–2024</div></div>
+        <div class="body">
+          <p>《思考，快与慢》把思维分为系统1（快、自动、不费力）与系统2（慢、费力、负责修正）：第一印象是系统1的出厂功能，而系统2总是缺席。</p>
+          <p>这解释了旧习惯为何戒不掉——它不在道德层面，在认知硬件层面；能做的不是关掉系统1，而是给系统2留出介入的时间。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">情境主义</span><div class="name">德波</div><div class="life">法国 · 情境主义 · 1931–1994</div></div>
+        <div class="body">
+          <blockquote class="quote">
+            <p>景观不是影像的聚合，而是以影像为中介的人们之间的社会关系。</p>
+            <cite>—— 居伊·德波《景观社会》（张新木译）</cite>
+          </blockquote>
+          <p>短视频把"以貌取人"从一次心理活动升级为一种社会关系结构——你不是偶尔犯错，你是生活在一个以貌为中介的世界里。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">先秦道家</span><div class="name">列子</div><div class="life">中国 · 先秦 · 约前450–前375</div></div>
+        <div class="body">
+          <blockquote class="quote">
+            <p>若皋之所观，天机也。得其精而忘其粗，在其内而忘其外。见其所见，不见其所不见；视其所视，而遗其所不视。</p>
+            <cite>—— 《列子 · 说符》（伯乐论九方皋相马）</cite>
+          </blockquote>
+          <p>九方皋连马的公母毛色都报错，却相中了天下之马——识人不靠"看全"，靠"看对"。把注意力从表皮挪到天机，是一种可以训练的技术。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">20世纪文学</span><div class="name">圣埃克苏佩里</div><div class="life">法国 · 20世纪文学 · 1900–1944</div></div>
+        <div class="body">
+          <blockquote class="quote">
+            <p>只有用心才能看见。本质的东西用眼是看不见的。……你将永远对你驯养的东西负责。</p>
+            <cite>—— 圣埃克苏佩里《小王子》（周克希译）</cite>
+          </blockquote>
+          <p>狐狸给的不是口号而是工艺——驯养需要时间、需要负责。"用心看"翻译成操作语言就是：给第一印象之外的人，再多一次接触。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card calibrator">
+      <h3>回响</h3>
+      <p>札记i 告诉我们旧习惯古已有之且无法关闭（孔子、康德）；札记ii 告诉我们它在景观时代被训练成暴政（卡尼曼、德波）；札记iii 的出路两千年前就写好了——视其所视（列子），用时间驯养（圣埃克苏佩里）。</p>
+    </div>
+  </section>
+
+  <!-- ============ iii 破局 ============ -->
+  <section id="way">
+    <div class="sec-head"><span class="roman">iii</span><h2>破局</h2><span class="en">The Way Out</span></div>
+    <hr class="sec-divider">
+
+    <div class="card diagnosis">
+      <h3>诊断</h3>
+      <p>你被两股力量夹击：一股是<b>系统1的出厂设置</b>——人脑自动完成的三秒审判；一股是<b>景观经济的新放大器</b>——把外貌编码成货币、把审判编码成滑动的时代系统。前者让你不得不看，后者让你看得停不下来。</p>
+      <p>但请听清：<b>不是你出了问题，是你醒了。</b>看见"滑动审判"这台机器本身，就是拆掉它的第一步。</p>
+    </div>
+
+    <div class="card move">
+      <div class="person">
+        <div class="meta"><span class="field">超验主义</span><div class="name">梭罗</div><div class="life">美国 · 超验主义 · 1817–1862</div></div>
+        <div class="body">
+          <h3><span class="tag">动作一 · 减法</span>　削掉三秒审判</h3>
+          <blockquote class="quote">
+            <p>简单，简单，再简单！</p>
+            <cite>—— 梭罗《瓦尔登湖》（徐迟译）</cite>
+          </blockquote>
+          <p><b>怎么做：</b>连续三天，每晚记下当天最冲动的一次"三秒判断"（对视频、对同事、对地铁上的陌生人），问一句"我看到了什么证据？"；静音或取关一个纯颜值供给源。公共场合把"三秒贴标签"改成"三秒存疑"。</p>
+          <p class="trap">别把减法做成自虐式戒断——梭罗砍掉的是多余，不是生活本身；少刷是为了腾地方，不是攒道德积分。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card move">
+      <div class="person">
+        <div class="meta"><span class="field">现代思想</span><div class="name">马克思</div><div class="life">德国 · 现代思想 · 1818–1883</div></div>
+        <div class="body">
+          <h3><span class="tag">动作二 · 转化</span>　只收集行为，不收集长相</h3>
+          <blockquote class="quote">
+            <p>工人生产的财富越多，他的产品的力量和数量越大，他就越贫穷。……物的世界的增值同人的世界的贬值成正比。</p>
+            <cite>—— 马克思《1844年经济学哲学手稿》</cite>
+          </blockquote>
+          <p><b>怎么做：</b>识人用"三问卡"——他做了什么？这个证据脱离他的脸还成立吗？我给过他时间吗？只记行为记录，不记外观评分。你自己也脱离颜值赛道：让一次产出靠作品本身被评价——方法、代码、文章，脱离当前环境仍属于你的那种。</p>
+          <p class="trap">别把"只看行为"做成"只看KPI"——行为证据要包括善意、信用与小事；否则你只是把外貌审判换成绩效审判，异化没有减少。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card move">
+      <div class="person">
+        <div class="meta"><span class="field">意志哲学</span><div class="name">叔本华</div><div class="life">德国 · 意志哲学 · 1788–1860</div></div>
+        <div class="body">
+          <h3><span class="tag">动作三 · 第二空间</span>　不做景观的供给者</h3>
+          <p>叔本华把人的价值锚在"人是什么"，而非"人有什么、人看起来如何"——第二空间就是把这个原则变成日程：一块不被功利与镜头统治的精神领地。</p>
+          <p><b>怎么做：</b>每天留 30 分钟"不发布的生活"——不拍照、不发、不经营人设，读、写、想、走路皆可；每周做一次"驯养实验"：给一个第一印象不佳的人或内容 30 分钟深度接触，事后只记录行为层面的变化。</p>
+          <p class="trap">别把第二空间晒出来——一变现、一汇报、一比较，它就又变回景观的一部分。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card calibrator">
+      <div class="person">
+        <div class="meta"><span class="field">意志哲学</span><div class="name">尼采</div><div class="life">德国 · 意志哲学 · 1844–1900</div></div>
+        <div class="body">
+          <h3>校准器 · 永恒回归之问</h3>
+          <blockquote class="quote">
+            <p>对你所做的每一件事，都有这样一个问题："你还想要它，还要无数次吗？"这个问题作为最大的重负压在你的行动上面！</p>
+            <cite>—— 尼采《快乐的科学》第341节</cite>
+          </blockquote>
+          <p>换成此题的问法：如果每一次滑动、每一眼打量都要重来无数次——你愿意把多少次留给三秒审判？拿它当筛子用。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ iv 契约 ============ -->
+  <section id="pledge">
+    <div class="sec-head"><span class="roman">iv</span><h2>契约</h2><span class="en">My Pledge</span></div>
+    <hr class="sec-divider">
+
+    <div class="card pledge">
+      <div class="pledge-info">
+        <h3><span style="color:#c9a961;font-weight:700;">减法</span>　滑动审判清点</h3>
+        <p>连续 3 天，每晚记下当天最冲动的一次"三秒判断"，自问"我看到了什么证据？"；从关注列表里静音或取关 1 个纯颜值供给源。</p>
+        <p class="trap" style="color:#b8683a;">⚠ 陷阱：这是观察练习，不是忏悔仪式——别边清点边自责。</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="c1"><label for="c1">本周检验：三天记录完成 □　取关/静音 ≥1 个 □</label>
+      </div>
+    </div>
+
+    <div class="card pledge">
+      <div class="pledge-info">
+        <h3><span style="color:#c9a961;font-weight:700;">转化</span>　三问识人卡</h3>
+        <p>本周每次对人产生判断（同事、合作方、视频作者），强制过一遍三问卡：他做了什么？这证据脱离他的脸还成立吗？我给过他时间吗？只记行为，不记长相。同时让一件产出"靠作品本身"被评价——去掉包装、滤镜与人设。</p>
+        <p class="trap" style="color:#b8683a;">⚠ 陷阱：三问管的是自己的判断，不是别人的长相——别把它做成审讯。</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="c2"><label for="c2">本周检验：三问卡使用 ≥3 次 □　一件作品式产出 □</label>
+      </div>
+    </div>
+
+    <div class="card pledge">
+      <div class="pledge-info">
+        <h3><span style="color:#c9a961;font-weight:700;">第二空间</span>　不发布的生活 + 驯养实验</h3>
+        <p>每天 30 分钟"不拍照、不发布、不经营"的生活；本周约（或深读）一个第一印象不佳的人/内容，给足 30 分钟，事后只记行为变化。</p>
+        <p class="trap" style="color:#b8683a;">⚠ 陷阱：别把 30 分钟晒出来——一晒就归零。</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="c3"><label for="c3">本周检验：30分钟 × ≥5 天 □　驯养实验 ×1 次 □</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ v 人物与著作 ============ -->
+  <section id="figures">
+    <div class="sec-head"><span class="roman">v</span><h2>人物与著作</h2><span class="en">Figures &amp; Readings</span></div>
+    <hr class="sec-divider">
+
+    <div class="group-label">东方古典</div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">东方儒学</span><div class="name">孔子</div><div class="life">中国 · 先秦 · 前551–前479</div></div>
+        <div class="body"><p>以自省立教的圣者——"以貌取人，失之子羽"，把识人变成一门终身功课（典出澹台灭明，字子羽，"状貌甚恶"）。</p><p style="margin-top:8px;">推荐阅读：《史记》（中华书局点校本，"仲尼弟子列传"卷）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">先秦道家</span><div class="name">庄子</div><div class="life">中国 · 先秦 · 约前369–前286</div></div>
+        <div class="body"><p>"爱使其形者"——内在优先的形神观，一部《德充符》专为以貌取人者而写（哀骀它、兀者王骀皆在其列）。</p><p style="margin-top:8px;">推荐阅读：《庄子今注今译》（陈鼓应译注，商务印书馆）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">先秦道家</span><div class="name">列子</div><div class="life">中国 · 先秦 · 约前450–前375</div></div>
+        <div class="body"><p>借九方皋相马道出"视其所视，而遗其所不视"——识人的东方技术原型（伯乐语，见《列子·说符》）。</p><p style="margin-top:8px;">推荐阅读：《列子集释》（杨伯峻撰，中华书局）</p></div>
+      </div>
+    </div>
+
+    <div class="group-label">德国传统</div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">德国古典哲学</span><div class="name">康德</div><div class="life">德国 · 德国古典哲学 · 1724–1804</div></div>
+        <div class="body"><p>承认第一印象无法关闭，主张把它降格为待修正的假设——"表壳之喻"出自此书。</p><p style="margin-top:8px;">推荐阅读：《实用人类学》（邓晓芒译，上海人民出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">意志哲学</span><div class="name">叔本华</div><div class="life">德国 · 意志哲学 · 1788–1860</div></div>
+        <div class="body"><p>把人的价值锚在"人是什么"而非"人有什么、看起来如何"——第二空间的理论靠山。</p><p style="margin-top:8px;">推荐阅读：《人生的智慧》（韦启昌译，上海人民出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">现代思想</span><div class="name">马克思</div><div class="life">德国 · 现代思想 · 1818–1883</div></div>
+        <div class="body"><p>以"异化"诊断所作与所属的分离，号召把劳动沉淀为属于自己的积累——"转化"动作的思想源头。</p><p style="margin-top:8px;">推荐阅读：《1844年经济学哲学手稿》（人民出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">意志哲学</span><div class="name">尼采</div><div class="life">德国 · 意志哲学 · 1844–1900</div></div>
+        <div class="body"><p>永恒回归之问——用"愿意重来无数次吗"当人生的筛子，amor fati（命运之爱）。</p><p style="margin-top:8px;">推荐阅读：《快乐的科学》（中译本，第341节"最大的重负"）</p></div>
+      </div>
+    </div>
+
+    <div class="group-label">法美文学与批判理论</div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">超验主义</span><div class="name">梭罗</div><div class="life">美国 · 超验主义 · 1817–1862</div></div>
+        <div class="body"><p>"简单，简单，再简单！"——减法生活的祖师，砍掉多余以腾出生命的空地。</p><p style="margin-top:8px;">推荐阅读：《瓦尔登湖》（徐迟译，上海译文出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">荒诞哲学</span><div class="name">加缪</div><div class="life">法国 · 荒诞哲学 · 1913–1960</div></div>
+        <div class="body"><p>以"在母亲葬礼上没有哭"定罪的警示录——以貌（表象）审判人，可致人死。</p><p style="margin-top:8px;">推荐阅读：《局外人》（郭宏安译）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">20世纪文学</span><div class="name">圣埃克苏佩里</div><div class="life">法国 · 20世纪文学 · 1900–1944</div></div>
+        <div class="body"><p>狐狸的驯养说——本质的东西眼睛看不见，要靠时间与责任来看见。</p><p style="margin-top:8px;">推荐阅读：《小王子》（周克希译，上海译文出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">情境主义</span><div class="name">德波</div><div class="life">法国 · 情境主义 · 1931–1994</div></div>
+        <div class="body"><p>预言"一切社会关系化为影像"的景观社会——短视频时代的先知。</p><p style="margin-top:8px;">推荐阅读：《景观社会》（张新木译，南京大学出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">后现代</span><div class="name">鲍德里亚</div><div class="life">法国 · 后现代 · 1929–2007</div></div>
+        <div class="body"><p>指出身体是"最美的消费品"——脸成为流通货币的思想源头。</p><p style="margin-top:8px;">推荐阅读：《消费社会》（刘成富、全志钢译，南京大学出版社）</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">社会学</span><div class="name">戈夫曼</div><div class="life">加拿大/美国 · 社会学 · 1922–1982</div></div>
+        <div class="body"><p>前台/后台——人人都在管理自己的"貌"，审判永远是双向的。</p><p style="margin-top:8px;">推荐阅读：《日常生活中的自我呈现》（北京大学出版社）</p></div>
+      </div>
+    </div>
+
+    <div class="group-label">当代研究</div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">教育心理学</span><div class="name">桑代克</div><div class="life">美国 · 教育心理学 · 1874–1949</div></div>
+        <div class="body"><p>光环效应（halo effect）的命名者；戴恩等人的"美即好"实验（1972）与哈默梅什的《Beauty Pays》把美貌溢价这笔账算到了明处。</p><p style="margin-top:8px;">推荐阅读：Thorndike, E. L. (1920). "A Constant Error in Psychological Ratings." <i>Journal of Applied Psychology</i>.</p></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="person">
+        <div class="meta"><span class="field">行为经济学</span><div class="name">卡尼曼</div><div class="life">以色列/美国 · 行为经济学 · 1934–2024</div></div>
+        <div class="body"><p>系统1/系统2——解释了第一印象为何自动、快捷且难以关闭。</p><p style="margin-top:8px;">推荐阅读：《思考，快与慢》（中信出版社）</p></div>
+      </div>
+    </div>
+
+    <p style="color:#6d6552;font-size:12px;margin-top:18px;">收录说明：导读收录在圆桌发言、溯源引证与破局方法中署名的思想家；典故人物（子羽、宰予、哀骀它、九方皋、伯乐、默尔索）与实验研究者（戴恩、哈默梅什）随相应条目内文说明，不单列。</p>
+  </section>
+
+  <footer class="sign">
+    <div class="date">2026年9月15日 · 自署</div>
+    <div class="seal">记</div>
+    <p class="source-note">引文均据公开中译本校核（《史记》《列子》《庄子·德充符》《实用人类学》《小王子》《景观社会》《消费社会》《1844年手稿》《快乐的科学》）</p>
+  </footer>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} · 专题册</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     伟大的你 · 专题册模板  —  复制结构、替换 {{PLACEHOLDER}}
+     对比度铁律：浅色文字(#f0e8d6)只用于深色 body 上的章节标题；
+     米色卡片(#f7f2e8)内所有文字一律深色 #2a2620/#3a352c/#5a5247
+     ============================================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: linear-gradient(160deg, #0f1419, #1a1625, #14110d);
+    background-attachment: fixed;
+    color: #f0e8d6;
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(ellipse 600px 400px at 15% 8%, rgba(201,169,97,.14), transparent 65%),
+      radial-gradient(ellipse 700px 500px at 88% 30%, rgba(155,63,90,.12), transparent 65%),
+      radial-gradient(ellipse 500px 420px at 50% 95%, rgba(201,169,97,.08), transparent 60%);
+  }
+
+  /* ---- 顶部 sticky 导航 ---- */
+  nav.toc {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 18px;
+    padding: 14px 20px;
+    background: rgba(15,20,25,.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,169,97,.28);
+  }
+  nav.toc a {
+    color: #c9a961; text-decoration: none; font-size: 14px; letter-spacing: .12em;
+    transition: color .2s;
+  }
+  nav.toc a:hover { color: #f0e8d6; }
+  nav.toc a .num { font-family: 'Cormorant Garamond', serif; font-style: italic; margin-right: 4px; }
+
+  /* ---- 版心与标题 ---- */
+  main { max-width: 860px; margin: 0 auto; padding: 56px 24px 120px; }
+  header.mono-head { text-align: center; margin-bottom: 72px; }
+  header.mono-head .eyebrow {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: #c9a961; letter-spacing: .35em; font-size: 15px; text-transform: uppercase;
+  }
+  header.mono-head h1 {
+    color: #f0e8d6; font-size: 44px; font-weight: 900; letter-spacing: .08em; margin: 14px 0 10px;
+  }
+  header.mono-head .sub { color: #b9ae95; font-size: 15px; }
+
+  section { margin-bottom: 88px; scroll-margin-top: 84px; }
+  .sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 30px; }
+  .sec-head .roman {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
+    font-size: 52px; color: #c9a961; line-height: 1;
+  }
+  .sec-head h2 { color: #f0e8d6; font-size: 26px; font-weight: 700; letter-spacing: .1em; }
+  .sec-head .en {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    color: #8d8570; font-size: 15px; letter-spacing: .18em;
+  }
+  .sec-divider { height: 1px; border: 0; margin: 0 0 34px;
+    background: linear-gradient(90deg, #c9a961, rgba(201,169,97,0) 80%); }
+
+  /* ---- 米色纸张卡片 ---- */
+  .card {
+    background: linear-gradient(180deg, #f7f2e8, #efe8d6);
+    border-radius: 12px;
+    box-shadow: 0 18px 44px rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.35);
+    padding: 34px 38px; margin-bottom: 26px;
+    position: relative; overflow: hidden;
+    color: #2a2620; /* 卡片内文字一律深色 */
+  }
+  .card::after { /* 纸张纹理 */
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .35;
+    background-image: repeating-linear-gradient(0deg, rgba(120,100,60,.045) 0 1px, transparent 1px 3px);
+  }
+  .card h3 { color: #2a2620; font-size: 19px; font-weight: 700; letter-spacing: .06em; margin-bottom: 12px; }
+  .card p  { color: #3a352c; font-size: 15.5px; }
+
+  /* ---- 札记：三则递进 ---- */
+  .note .no { font-family: 'Cormorant Garamond', serif; font-style: italic; color: #b8683a; font-size: 22px; }
+  .note .punch {
+    margin-top: 26px; text-align: center; color: #c9a961;
+    font-size: 18px; letter-spacing: .12em; font-weight: 600;
+  }
+
+  /* ---- 引文块 ---- */
+  blockquote.quote {
+    border-left: 3px solid #c9a961;
+    padding: 6px 0 6px 18px; margin: 16px 0;
+  }
+  blockquote.quote p { font-family: 'Noto Serif SC', serif; color: #2a2620; font-size: 16px; }
+  blockquote.quote cite { display: block; margin-top: 6px; font-style: normal; color: #5a5247; font-size: 12.5px; letter-spacing: .06em; }
+
+  /* ---- 圆桌发言 / 人物导读：左列统一 100px ---- */
+  .person { display: grid; grid-template-columns: 100px 1fr; gap: 18px; align-items: start; }
+  .person .meta { text-align: left; }
+  .person .meta .field {
+    display: inline-block; font-size: 11px; color: #b8683a;
+    border: 1px solid rgba(184,104,58,.5); border-radius: 3px;
+    padding: 1px 7px; letter-spacing: .08em; margin-bottom: 4px;
+  }
+  .person .meta .name {
+    color: #2a2620; font-weight: 700; font-size: 17px;
+    word-break: keep-all; line-height: 1.35;
+  }
+  .person .meta .life { color: #5a5247; font-size: 11.5px; line-height: 1.6; margin-top: 3px; }
+  .person .body p { color: #3a352c; }
+
+  /* ---- 破局：诊断 / 动作 / 校准器 ---- */
+  .diagnosis { border-left: 3px solid #b8683a; }
+  .diagnosis h3 { color: #b8683a; }
+  .move { counter-reset: step; }
+  .move .tag { color: #c9a961; font-weight: 700; letter-spacing: .1em; }
+  .move .trap { color: #b8683a; }
+  .move .trap::before { content: "⚠ 陷阱："; font-weight: 700; }
+  .calibrator { text-align: center; padding: 26px 30px; }
+  .calibrator p { color: #2a2620; font-size: 17px; }
+
+  /* ---- 契约卡 ---- */
+  .pledge .pledge-info h3 { color: #2a2620; } /* 铁律：严禁米色/浅色，曾因此隐形 */
+  .pledge .check { display: flex; gap: 8px; align-items: flex-start; margin-top: 14px; }
+  .pledge .check input[type="checkbox"] { width: 16px; height: 16px; accent-color: #b8683a; margin-top: 5px; }
+  .pledge .check label { color: #3a352c; font-size: 14.5px; }
+
+  /* ---- 落款 ---- */
+  footer.sign { text-align: center; margin-top: 90px; position: relative; }
+  footer.sign .date { color: #b9ae95; font-size: 14px; letter-spacing: .2em; }
+  footer.sign .seal {
+    width: 64px; height: 64px; margin: 18px auto 0; border-radius: 50%;
+    border: 2px solid #b8683a; color: #b8683a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 900;
+    transform: rotate(-8deg);
+    box-shadow: inset 0 0 0 3px rgba(184,104,58,.18);
+  }
+  footer.sign .source-note { margin-top: 34px; color: #6d6552; font-size: 12px; letter-spacing: .05em; }
+</style>
+</head>
+<body>
+
+<nav class="toc">
+  <a href="#notes"><span class="num">i</span>札记</a>
+  <a href="#echo"><span class="num">ii</span>溯源</a>
+  <a href="#way"><span class="num">iii</span>破局</a>
+  <a href="#pledge"><span class="num">iv</span>契约</a>
+  <a href="#figures"><span class="num">v</span>人物与著作</a>
+</nav>
+
+<main>
+  <header class="mono-head">
+    <div class="eyebrow">Great You · Monograph</div>
+    <h1>{{TITLE}}</h1>
+    <div class="sub">{{SUBTITLE_OR_DATE}}</div>
+  </header>
+
+  <!-- ============ i 札记 ============ -->
+  <section id="notes">
+    <div class="sec-head"><span class="roman">i</span><h2>札记</h2><span class="en">Life Notes</span></div>
+    <hr class="sec-divider">
+
+    <div class="card note">
+      <span class="no">i.</span>
+      <h3>{{札记一小标题，如"物与精神"}}</h3>
+      <p>{{札记一正文，认识层}}</p>
+    </div>
+    <div class="card note">
+      <span class="no">ii.</span>
+      <h3>{{札记二小标题，如"困顿"}}</h3>
+      <p>{{札记二正文，困境层}}</p>
+    </div>
+    <div class="card note">
+      <span class="no">iii.</span>
+      <h3>{{札记三小标题，如"出口"}}</h3>
+      <p>{{札记三正文，出路层}}</p>
+    </div>
+    <p class="punch">{{点睛句}}</p>
+  </section>
+
+  <!-- ============ ii 溯源 ============ -->
+  <section id="echo">
+    <div class="sec-head"><span class="roman">ii</span><h2>溯源</h2><span class="en">Philosophical Echo</span></div>
+    <hr class="sec-divider">
+
+    <div class="card">
+      <div class="person">
+        <div class="meta">
+          <span class="field">{{学科标签}}</span>
+          <div class="name">{{作家名}}</div>
+          <div class="life">{{国籍 · 时代 · 生卒}}</div>
+        </div>
+        <div class="body">
+          <blockquote class="quote">
+            <p>{{原文引文}}</p>
+            <cite>—— {{作品名}}（{{中译者/版本}}）</cite>
+          </blockquote>
+          <p>{{一句阐释：如何对应札记}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- 每位作家一张卡，按需复制上卡 -->
+
+    <div class="card calibrator">
+      <h3>回响</h3>
+      <p>{{三句话小结：这三则札记站在谁的肩膀上}}</p>
+    </div>
+  </section>
+
+  <!-- ============ iii 破局 ============ -->
+  <section id="way">
+    <div class="sec-head"><span class="roman">iii</span><h2>破局</h2><span class="en">The Way Out</span></div>
+    <hr class="sec-divider">
+
+    <div class="card diagnosis">
+      <h3>诊断</h3>
+      <p>{{两股力量夹击的诊断：异化 × 无聊；点明"不是你出了问题，是你醒了"}}</p>
+    </div>
+
+    <div class="card move">
+      <h3><span class="tag">动作一 · 减法</span>　夺回时间与精力（{{作家}}）</h3>
+      <p>{{怎么做：结合用户真实处境}}</p>
+      <p class="trap">{{陷阱}}</p>
+    </div>
+    <div class="card move">
+      <h3><span class="tag">动作二 · 转化</span>　让消耗变成积累（{{作家}}）</h3>
+      <p>{{怎么做}}</p>
+      <p class="trap">{{陷阱}}</p>
+    </div>
+    <div class="card move">
+      <h3><span class="tag">动作三 · 第二空间</span>　不被功利绑架的精神生活（{{作家}}）</h3>
+      <p>{{怎么做}}</p>
+      <p class="trap">{{陷阱}}</p>
+    </div>
+
+    <div class="card calibrator">
+      <h3>校准器</h3>
+      <p>"此刻生活要重来无数次，我还愿意吗？"——{{永恒回归当筛子}}</p>
+    </div>
+  </section>
+
+  <!-- ============ iv 契约 ============ -->
+  <section id="pledge">
+    <div class="sec-head"><span class="roman">iv</span><h2>契约</h2><span class="en">My Pledge</span></div>
+    <hr class="sec-divider">
+
+    <div class="card pledge">
+      <div class="pledge-info">
+        <h3>{{动作名：减法}}</h3>
+        <p>{{怎么做}}</p>
+        <p class="trap" style="color:#b8683a;">⚠ 陷阱：{{陷阱}}</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="c1"><label for="c1">本周检验：{{可勾选的具体检验项}}</label>
+      </div>
+    </div>
+    <div class="card pledge">
+      <div class="pledge-info">
+        <h3>{{动作名：转化}}</h3>
+        <p>{{怎么做}}</p>
+        <p class="trap" style="color:#b8683a;">⚠ 陷阱：{{陷阱}}</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="c2"><label for="c2">本周检验：{{可勾选的具体检验项}}</label>
+      </div>
+    </div>
+    <div class="card pledge">
+      <div class="pledge-info">
+        <h3>{{动作名：第二空间}}</h3>
+        <p>{{怎么做}}</p>
+        <p class="trap" style="color:#b8683a;">⚠ 陷阱：{{陷阱}}</p>
+      </div>
+      <div class="check">
+        <input type="checkbox" id="c3"><label for="c3">本周检验：{{可勾选的具体检验项}}</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ v 人物与著作导读（人物一致性校验：出场人物集合 == 此处集合） ============ -->
+  <section id="figures">
+    <div class="sec-head"><span class="roman">v</span><h2>人物与著作</h2><span class="en">Figures &amp; Readings</span></div>
+    <hr class="sec-divider">
+
+    <div class="card">
+      <div class="person">
+        <div class="meta">
+          <span class="field">{{学科标签}}</span>
+          <div class="name">{{姓名}}</div>
+          <div class="life">{{国籍 · 时代 · 生卒}}</div>
+        </div>
+        <div class="body">
+          <p>{{一句定位}}</p>
+          <p style="margin-top:8px;">推荐阅读：《{{书名}}》（{{中译本}}）</p>
+        </div>
+      </div>
+    </div>
+    <!-- 每位正文出场人物一条，缺一补一、多一删一 -->
+  </section>
+
+  <footer class="sign">
+    <div class="date">{{YYYY年MM月DD日}} · 自署</div>
+    <div class="seal">记</div>
+    <p class="source-note">引文均据公开中译本校核</p>
+  </footer>
+</main>
+
+</body>
+</html>
